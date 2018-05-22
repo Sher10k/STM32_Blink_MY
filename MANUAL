@@ -1,0 +1,21 @@
+�считать из памяти
+st-flash read ./default.bin 0x08000000 0x10000
+
+Запись
+st-flash write ./main.bin 0x08000000
+
+
+
+Компиляция ассемблерного кода
+arm-none-eabi-as -o bootstrap.o bootstrap.s
+
+
+git log --oneline --graph --decorate --all
+
+
+использование git
+
+touch about.html			создаем новый файл
+git add .				добавляем все файлы в учет git
+git commit -m 'Add about page'		создаем новый commit
+git push origin HEAD			помещаем все в репозиторий (на github)
