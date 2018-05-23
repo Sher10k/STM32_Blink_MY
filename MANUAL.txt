@@ -1,4 +1,4 @@
-�считать из памяти
+#считать из памяти
 st-flash read ./default.bin 0x08000000 0x10000
 
 Запись
@@ -10,6 +10,7 @@ st-flash write ./main.bin 0x08000000
 arm-none-eabi-as -o bootstrap.o bootstrap.s
 
 
+заместо last
 git log --oneline --graph --decorate --all
 
 
@@ -19,3 +20,8 @@ touch about.html			создаем новый файл
 git add .				добавляем все файлы в учет git
 git commit -m 'Add about page'		создаем новый commit
 git push origin HEAD			помещаем все в репозиторий (на github)
+
+git status			     	статус файлов репозитория
+git checkout master 	переключиться на master
+git branch master		  создать master
+git diff 							просмотр изменений
