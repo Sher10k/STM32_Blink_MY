@@ -1,0 +1,20 @@
+считать из памяти
+st-flash read ./default.bin 0x08000000 0x10000
+
+Запись
+st-flash write ./main.bin 0x08000000
+
+
+
+Компиляция ассемблерного кода
+arm-none-eabi-as -o bootstrap.o bootstrap.s
+
+
+использование git
+
+touch about.html		создаем новый файл
+git add .			добовляем фсе файлы из репозитория
+
+git commit -m 'Add about page'
+git push origin HEAD
+
