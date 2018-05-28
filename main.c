@@ -1,6 +1,6 @@
 #include "stm32f10x.h"
-//#include "inc/stm32f10x_rcc.h"
-//#include "inc/stm32f10x_gpio.h"
+//#include "stm32f10x_rcc.h"
+//#include "stm32f10x_gpio.h"
 
 void delay(uint32_t t);
 

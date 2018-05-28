@@ -1,3 +1,29 @@
+#Name project
+#-------------------------------------------------------------------------------
+TARGET = main
+
+#Build all
+#-------------------------------------------------------------------------------
+all: $(APP).bin disassm #info flash
+
+#clean
+#-------------------------------------------------------------------------------
+clean:
+	rm $(OUTPUT)*.bin $(OUTPUT)*.o $(OUTPUT)*.elf $(OUTPUT)*.lst
+
+# Start
+#-------------------------------------------------------------------------------
+start:
+	@ echo "Start ---------------------------------------------------------------"
+
+# Stop
+#-------------------------------------------------------------------------------
+stop:
+	@ echo "Stop ----------------------------------------------------------------"
+
+
+
+
 APP = main
 
 CC = arm-none-eabi-gcc
@@ -16,7 +42,7 @@ CFLAGS = -std=gnu99 -O0 -nostdlib -nostartfiles -ffreestanding -Wall -mthumb -mc
 #LDFLAGS = -std=gnu99 -g -O0 -Wall -mlittle-endian -mthumb -mthumb-interwork -mcpu=cortex-m3 -fsingle-precision-constant -Wdouble-promotion
 ODFLAGS = -D
 
-all: $(APP).bin disassm #info flash
+
 
 main.bin: main.elf
 	@ echo "		#...Extract binary code for firmware..."
@@ -64,8 +90,3 @@ flash_R:
 flash_W:
 	@ echo "		#...Flash_write_output/main.bin..."
 	st-flash --reset write $(OUTPUT)$(APP).bin 0x08000000
-
-
-
-clean:
-	rm $(OUTPUT)*.bin $(OUTPUT)*.o $(OUTPUT)*.elf $(OUTPUT)*.lst
