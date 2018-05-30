@@ -26,6 +26,7 @@ git status			     							статус файлов репозитория
 git branch master		  						создать ветки master
 git checkout master 							переключиться на ветку master
 git branch -m new_master					переименует текущую ветку (master) на new_master
+
 git diff 													просмотр изменений
 
 git checkout -b new2_master				добавить новую ветку и переместиться в нее за одну команду
@@ -41,6 +42,8 @@ git branch -d new_master					удаление ветки new_master
 git branch -D new2_master					форсированное удаление ветки new2_master, не смотря на ограничения
 
 
+
+
 #-------------------------------------------------------------------------------
 
 перенастройка отображения last(выполнить в терминале)
@@ -49,3 +52,8 @@ export PS1='\t \[\033[01;32m\]\u\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\
 
 # Shortcat for the pretty git log. Can be extended with the commit count parameter (last -10, last -35)
 alias last='git log --graph --all --oneline --decorate '
+
+
+export PS1='\t \[\033[01;32m\]\u\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
+alias last='git log --graph --all --oneline --decorate '
+
