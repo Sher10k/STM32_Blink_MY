@@ -48,7 +48,7 @@ CP = arm-none-eabi-objcopy
 OD = arm-none-eabi-objdump
 #OC = arm-none-eabi-objcopy
 SZ = arm-none-eabi-size
-RM = rm
+RM = rm -rf
 
 # Ways to CMSIS, StdPeriph Lib
 #-------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ STDPERIPH_SRC_PATH = Libraries/STM32F10x_StdPeriph_Driver/src
 
 # startup file
 #-------------------------------------------------------------------------------
-STARTUP = Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/arm/startup_stm32f10x_md_vl.s
+STARTUP = Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s
 
 # Paths to search for source files
 #-------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ CFLAGS += $(addprefix -D, $(DEFINES))
 # Linker script
 #-------------------------------------------------------------------------------
 LDSCR_PATH = ld-scripts
-LDSCRIPT   = stm32_ld_scripts_5.ld
+LDSCRIPT   = stm32_ld_scripts_4.ld
 
 # Linker settings
 #-------------------------------------------------------------------------------
@@ -135,13 +135,14 @@ TOREMOVE += $(TARGET)
 
 # Build all
 #-------------------------------------------------------------------------------
-all: $(TARGET).hex size
+all: start $(TARGET).hex size stop
 #disassm info flash
 
 # Build .bin file
 #-------------------------------------------------------------------------------
 $(TARGET).hex: $(TARGET).elf
-	@ echo "		#...Extract binary code for firmware..."
+	@ echo "################...Extract binary code for firmware..."
+	@ echo "$^"
 	#@ $(CP) $(TARGET).elf $(TARGET).bin -O binary
 	@ $(CP) -Oihex $(TARGET).elf $(TARGET).hex
 	#$(CP) $(OUTPUT)main.elf $(OUTPUT)main.bin -O binary
@@ -149,22 +150,28 @@ $(TARGET).hex: $(TARGET).elf
 # Build .lst file
 #-------------------------------------------------------------------------------
 disassm: $(APP).elf
-	@ echo "		#...Disassemble..."
+	@ echo "################...Disassemble..."
+	@ echo "$^"
 	@ $(OD) $(ODFLAGS) $(OUTPUT)$(APP).elf > $(OUTPUT)$(APP).lst
 
 # Linkage (build .elf file)
 #-------------------------------------------------------------------------------
 $(TARGET).elf: $(OBJS)
 	#startup.o main.o
-	@ echo "		#...Linkage..."
+	@ echo "################...Linkage..."
+	@ echo "$^"
 	@ $(LD) $(LDFLAGS) $^ -o $@
 	#$(LD) -o $(OUTPUT)main.elf -T stm32f103.ld $(OUTPUT)startup.o $(OUTPUT)main.o
 
 # Compile
 #-------------------------------------------------------------------------------
 %.o: %.c
+	@ echo "################...Compile..."
+	@ echo "$^"
 	@ $(CC) $(CFLAGS) -MD -c $< -o $@
 %.o: %.s
+	@ echo "################...Compile..."
+	@ echo "$^"
 	@ $(AS) $(AFLAGS) -c $< -o $@
 
 # Сгенерированные gcc зависимости
@@ -182,7 +189,8 @@ size:
 #clean
 #-------------------------------------------------------------------------------
 clean:
-	@$(RM) -f $(TOREMOVE)
+	@ echo "Clean ---------------------------------------------------------------"
+	@$(RM) $(TOREMOVE)
 	#rm $(OUTPUT)*.bin $(OUTPUT)*.o $(OUTPUT)*.elf $(OUTPUT)*.lst
 
 
@@ -197,7 +205,7 @@ stop:
 	@ echo "Stop ----------------------------------------------------------------"
 
 info:
-	@ echo "		#...Info about ARM..."
+	@ echo "################...Info about ARM..."
 	st-info --version
 	st-info --flash
 	st-info --sram
@@ -209,11 +217,11 @@ info:
 	st-info --probe
 
 flash_R:
-	@ echo "		#...Flash_read_input/input.bin..."
+	@ echo "################...Flash_read_input/input.bin..."
 	st-flash read $(INPUT)input.bin 0x08000000 0x10000
 
 flash_W:
-	@ echo "		#...Flash_write_output/main.bin..."
+	@ echo "################...Flash_write_output/main.bin..."
 	st-flash --reset write $(OUTPUT)$(APP).bin 0x08000000
 
 
