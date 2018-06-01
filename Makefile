@@ -1,3 +1,8 @@
+
+
+#!!!!!!!!!!!!!!!!!!USER CONFIG VARIABLES!!!!!!!!!!!!!!!!
+#-------------------------------------------------------------------------------
+
 # Name project
 #-------------------------------------------------------------------------------
 TARGET = main
@@ -29,7 +34,7 @@ TARGET = main
 # Defines
 #-------------------------------------------------------------------------------
 DEFINES += USE_STDPERIPH_DRIVER
-DEFINES += STM32F10X_MD_VL
+DEFINES += STM32F10X_MD
 
 DEFINES += GCC_ARMCM3
 DEFINES += VECT_TAB_FLASH
@@ -42,8 +47,8 @@ INPUT = input
 #AS = arm-none-eabi-gcc
 AS = arm-none-eabi-as
 CC = arm-none-eabi-gcc
-#LD = arm-none-eabi-gcc
-LD = arm-none-eabi-ld
+LD = arm-none-eabi-gcc
+#LD = arm-none-eabi-ld
 CP = arm-none-eabi-objcopy
 OD = arm-none-eabi-objdump
 #OC = arm-none-eabi-objcopy
@@ -52,7 +57,8 @@ RM = rm -rf
 
 # Ways to CMSIS, StdPeriph Lib
 #-------------------------------------------------------------------------------
-CMSIS_PATH         = Libraries/CMSIS
+CMSIS_PATH         += Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x
+CMSIS_PATH         += Libraries/CMSIS/CM3/CoreSupport
 STDPERIPH_INC_PATH = Libraries/STM32F10x_StdPeriph_Driver/inc
 STDPERIPH_SRC_PATH = Libraries/STM32F10x_StdPeriph_Driver/src
 
@@ -62,7 +68,8 @@ STARTUP = Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/start
 
 # Paths to search for source files
 #-------------------------------------------------------------------------------
-SOURCEDIRS := src
+#SOURCEDIRS := src
+SOURCEDIRS := $(STDPERIPH_SRC_PATH)
 SOURCEDIRS += $(CMSIS_PATH)
 
 # Paths to search for header files
@@ -88,8 +95,9 @@ CFLAGS += -Wall -pedantic
 # Optimization  (-O0 without optimization, -Os optimization by volume)
 CFLAGS += -O0
 # Генерировать отладочную информацию для gdb
-CFLAGS += -ggdb
+#CFLAGS += -ggdb
 
+#CFLAGS += -nostdlib -nostartfiles -ffreestanding -I.
 CFLAGS += -fno-builtin
 CFLAGS += $(addprefix -I, $(INCLUDES))
 CFLAGS += $(addprefix -D, $(DEFINES))
@@ -97,13 +105,14 @@ CFLAGS += $(addprefix -D, $(DEFINES))
 # Linker script
 #-------------------------------------------------------------------------------
 LDSCR_PATH = ld-scripts
-LDSCRIPT   = stm32_ld_scripts_4.ld
+LDSCRIPT   = stm32_ld_scripts_8.ld
 
 # Linker settings
 #-------------------------------------------------------------------------------
-LDFLAGS += -nostartfiles
-LDFLAGS += -L$(LDSCR_PATH)
-LDFLAGS += -T$(LDSCR_PATH)/$(LDSCRIPT)
+LDFLAGS += -nostartfiles  -nostdlib -gc-sections -mthumb -mcpu=cortex-m3
+#LDFLAGS += -nostartfiles
+LDFLAGS += -L $(LDSCR_PATH)
+LDFLAGS += -T $(LDSCR_PATH)/$(LDSCRIPT)
 LDFLAGS += $(addprefix -L, $(LIBPATH))
 LDFLAGS += $(LIBS)
 
@@ -136,7 +145,6 @@ TOREMOVE += $(TARGET)
 # Build all
 #-------------------------------------------------------------------------------
 all: start $(TARGET).hex size stop
-#disassm info flash
 
 # Build .bin file
 #-------------------------------------------------------------------------------
@@ -149,17 +157,16 @@ $(TARGET).hex: $(TARGET).elf
 
 # Build .lst file
 #-------------------------------------------------------------------------------
-disassm: $(APP).elf
+disassm: $(TARGET).elf
 	@ echo "################...Disassemble..."
 	@ echo "$^"
-	@ $(OD) $(ODFLAGS) $(OUTPUT)$(APP).elf > $(OUTPUT)$(APP).lst
+	@ $(OD) $(ODFLAGS) $(OUTPUT)$(TARGET).elf > $(OUTPUT)$(TARGET).lst
 
 # Linkage (build .elf file)
 #-------------------------------------------------------------------------------
 $(TARGET).elf: $(OBJS)
-	#startup.o main.o
 	@ echo "################...Linkage..."
-	@ echo "$^"
+	@ #echo "$^"
 	@ $(LD) $(LDFLAGS) $^ -o $@
 	#$(LD) -o $(OUTPUT)main.elf -T stm32f103.ld $(OUTPUT)startup.o $(OUTPUT)main.o
 
@@ -184,14 +191,18 @@ include $(wildcart *.d)
 #-------------------------------------------------------------------------------
 size:
 	@ echo "Size ----------------------------------------------------------------"
-	@$(SZ) $(TARGET).elf
+	@ $(SZ) $(TARGET).elf
 
-#clean
+# Clean
 #-------------------------------------------------------------------------------
 clean:
 	@ echo "Clean ---------------------------------------------------------------"
-	@$(RM) $(TOREMOVE)
+	@ $(RM) $(TOREMOVE)
 	#rm $(OUTPUT)*.bin $(OUTPUT)*.o $(OUTPUT)*.elf $(OUTPUT)*.lst
+
+# Rebuild
+#-------------------------------------------------------------------------------
+rebuild: clean all
 
 
 # Start
@@ -222,7 +233,7 @@ flash_R:
 
 flash_W:
 	@ echo "################...Flash_write_output/main.bin..."
-	st-flash --reset write $(OUTPUT)$(APP).bin 0x08000000
+	st-flash --reset write $(OUTPUT)$(TARGET).bin 0x08000000
 
 
 # Old
