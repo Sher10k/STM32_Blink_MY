@@ -3,7 +3,7 @@ st-flash read ./default.bin 0x08000000 0x10000
 
 Запись
 st-flash write ./main.bin 0x08000000
-
+st-flash write ./blink.hex 0x08000000
 
 
 Компиляция ассемблерного кода
