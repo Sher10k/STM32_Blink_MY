@@ -9,6 +9,9 @@ st-flash write ./blink.hex 0x08000000
 Компиляция ассемблерного кода
 arm-none-eabi-as -o bootstrap.o bootstrap.s
 
+терминальный монитор UART
+sudo gtkterm 
+
 
 заместо last
 git log --oneline --graph --decorate --all

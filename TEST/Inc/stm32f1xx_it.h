@@ -56,6 +56,7 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
+extern volatile uint32_t ticks_delay;
 
 #ifdef __cplusplus
 }

@@ -180,7 +180,7 @@ void SysTick_Handler(void)
   HAL_IncTick();
   HAL_SYSTICK_IRQHandler();
   /* USER CODE BEGIN SysTick_IRQn 1 */
-
+  ticks_delay++;
   /* USER CODE END SysTick_IRQn 1 */
 }
 
