@@ -10,39 +10,65 @@
 /* Private variables ---------------------------------------------------------*/
 char click0=1, k=1;
 volatile uint32_t ticks_delay = 0;
+UART_HandleTypeDef huart1;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_USART1_UART_Init(void);
 void Delay2(uint32_t t);
 void delay_ms(uint32_t milliseconds);
 
 int main(void)
 {
+	uint8_t data = 1;
+	uint8_t str[] = "Hello";
 
 	// Initialization
 	HAL_Init();
 	SystemClock_Config();
 	MX_GPIO_Init();
+	MX_USART1_UART_Init();
 
+	// For SysTick
 	// SysTick
-	SysTick->LOAD = SystemCoreClock/1000-1;		// Загрузка значения. Нам нужен килогерц
+	/*SysTick->LOAD = SystemCoreClock/1000-1;		// Загрузка значения. Нам нужен килогерц
 	SysTick->VAL = 0x0;		// Обнуляем таймеры и флаги. Записью, помните?
 	SysTick->CTRL =	SysTick_CTRL_CLKSOURCE_Msk |
-					SysTick_CTRL_TICKINT_Msk;
+					SysTick_CTRL_TICKINT_Msk;*/
 
+	//HAL_UART_Receive_IT(&huart1, &data, 1);
 	while (1)
 	{
-		if (((GPIOA->IDR & (GPIO_IDR_IDR0)) == 0) && (click0 != 0))
+		//HAL_UART_Transmit(&huart1, str, 5, 1000);
+
+		/*if (((GPIOA->IDR & (GPIO_IDR_IDR0)) == 0) && (click0 != 0))
 		{
 			//GPIOC->ODR ^= GPIO_ODR_ODR13;
 			k ^= 1;
 		}
-		click0 = (GPIOA->IDR & (GPIO_IDR_IDR0));
+		click0 = (GPIOA->IDR & (GPIO_IDR_IDR0));*/
 
-		GPIOC->ODR ^= GPIO_ODR_ODR13;
-		delay_ms(1000);
+		//GPIOC->ODR ^= GPIO_ODR_ODR13;
+		//delay_ms(1000);
+		//HAL_Delay(1000);
 
+		if (huart1.RxXferCount == 0)
+		{
+			//HAL_UART_Transmit(&huart1, str, 5, 1000);
+			HAL_UART_Transmit(&huart1, &data, 1, 1000);
+			if (data == 1)
+			{
+				k = 1;
+				//GPIOC->BSRR |= GPIO_BSRR_BR13;
+			} else
+			{
+				k = 0;
+				GPIOC->BSRR |= GPIO_BSRR_BS13;
+			}
+			if (k == 1) GPIOC->ODR ^= GPIO_ODR_ODR13;
+			HAL_UART_Receive_IT(&huart1, &data, 1);
+		}
 		/*if (k == 0)
 		{
 			GPIOC->BSRR |= GPIO_BSRR_BS13;
@@ -103,30 +129,48 @@ void SystemClock_Config(void)
 static void MX_GPIO_Init(void)
 {
 
-  GPIO_InitTypeDef GPIO_InitStruct;
+	GPIO_InitTypeDef GPIO_InitStruct;
 
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
+	/* GPIO Ports Clock Enable */
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+	__HAL_RCC_GPIOD_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE();
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+	/*Configure GPIO pin Output Level */
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
 
-  /*Configure GPIO pin : PC13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+	/*Configure GPIO pin : PC13 */
+	GPIO_InitStruct.Pin = GPIO_PIN_13;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
 	/*Configure GPIO pin : PA0 */
 	GPIO_InitStruct.Pin = GPIO_PIN_0;
 	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
 	GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 }
+
+/* USART1 init function */
+static void MX_USART1_UART_Init(void)
+{
+
+	huart1.Instance = USART1;
+	huart1.Init.BaudRate = 115200;
+	huart1.Init.WordLength = UART_WORDLENGTH_8B;
+	huart1.Init.StopBits = UART_STOPBITS_1;
+	huart1.Init.Parity = UART_PARITY_NONE;
+	huart1.Init.Mode = UART_MODE_TX_RX;
+	huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+	huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+	if (HAL_UART_Init(&huart1) != HAL_OK)
+	{
+	_Error_Handler(__FILE__, __LINE__);
+	}
+}
+
 /* функция задержки */
 void Delay2(uint32_t t)
 {
@@ -135,7 +179,6 @@ void Delay2(uint32_t t)
     asm("NOP");
   }
 }
-
 void delay_ms(uint32_t milliseconds)
 {
 	SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;	// Запуск системного счетчика
