@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc1Ha7wN.s 			page 1
+ARM GAS  /tmp/cc8LIzEN.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
   30:Src/stm32f1xx_it.c ****   *
   31:Src/stm32f1xx_it.c ****   ******************************************************************************
   32:Src/stm32f1xx_it.c ****   */
-ARM GAS  /tmp/cc1Ha7wN.s 			page 2
+ARM GAS  /tmp/cc8LIzEN.s 			page 2
 
 
   33:Src/stm32f1xx_it.c **** /* Includes ------------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
   49              		.cfi_endproc
   50              	.LFE63:
   52              		.section	.text.HardFault_Handler,"ax",%progbits
-ARM GAS  /tmp/cc1Ha7wN.s 			page 3
+ARM GAS  /tmp/cc8LIzEN.s 			page 3
 
 
   53              		.align	2
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
   86              		.loc 1 88 0
   87              		.cfi_startproc
   88              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/cc1Ha7wN.s 			page 4
+ARM GAS  /tmp/cc8LIzEN.s 			page 4
 
 
   89              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
  109:Src/stm32f1xx_it.c ****   /* USER CODE END BusFault_IRQn 0 */
  110:Src/stm32f1xx_it.c ****   while (1)
  111:Src/stm32f1xx_it.c ****   {
-ARM GAS  /tmp/cc1Ha7wN.s 			page 5
+ARM GAS  /tmp/cc8LIzEN.s 			page 5
 
 
  112:Src/stm32f1xx_it.c ****     /* USER CODE BEGIN W1_BusFault_IRQn 0 */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
  162              	SVC_Handler:
  163              	.LFB68:
  133:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN UsageFault_IRQn 1 */
-ARM GAS  /tmp/cc1Ha7wN.s 			page 6
+ARM GAS  /tmp/cc8LIzEN.s 			page 6
 
 
  134:Src/stm32f1xx_it.c **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
  198              		.cfi_startproc
  199              		@ args = 0, pretend = 0, frame = 0
  200              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  /tmp/cc1Ha7wN.s 			page 7
+ARM GAS  /tmp/cc8LIzEN.s 			page 7
 
 
  201              		@ link register save eliminated.
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
  171:Src/stm32f1xx_it.c ****   /* USER CODE END PendSV_IRQn 0 */
  172:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 1 */
  173:Src/stm32f1xx_it.c **** 
-ARM GAS  /tmp/cc1Ha7wN.s 			page 8
+ARM GAS  /tmp/cc8LIzEN.s 			page 8
 
 
  174:Src/stm32f1xx_it.c ****   /* USER CODE END PendSV_IRQn 1 */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
  283 0012 014A     		ldr	r2, .L14
  284 0014 1360     		str	r3, [r2]
  189:Src/stm32f1xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
-ARM GAS  /tmp/cc1Ha7wN.s 			page 9
+ARM GAS  /tmp/cc8LIzEN.s 			page 9
 
 
  190:Src/stm32f1xx_it.c **** }
@@ -490,12 +490,12 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
  290 0018 00000000 		.word	ticks_delay
  291              		.cfi_endproc
  292              	.LFE71:
- 294              		.section	.text.DMA1_Channel4_IRQHandler,"ax",%progbits
+ 294              		.section	.text.EXTI0_IRQHandler,"ax",%progbits
  295              		.align	2
- 296              		.global	DMA1_Channel4_IRQHandler
+ 296              		.global	EXTI0_IRQHandler
  297              		.thumb
  298              		.thumb_func
- 300              	DMA1_Channel4_IRQHandler:
+ 300              	EXTI0_IRQHandler:
  301              	.LFB72:
  191:Src/stm32f1xx_it.c **** 
  192:Src/stm32f1xx_it.c **** 
@@ -508,9 +508,9 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
  199:Src/stm32f1xx_it.c **** /******************************************************************************/
  200:Src/stm32f1xx_it.c **** 
  201:Src/stm32f1xx_it.c **** /**
- 202:Src/stm32f1xx_it.c **** * @brief This function handles DMA1 channel4 global interrupt.
+ 202:Src/stm32f1xx_it.c **** * @brief This function handles EXTI line0 interrupt.
  203:Src/stm32f1xx_it.c **** */
- 204:Src/stm32f1xx_it.c **** void DMA1_Channel4_IRQHandler(void)
+ 204:Src/stm32f1xx_it.c **** void EXTI0_IRQHandler(void)
  205:Src/stm32f1xx_it.c **** {
  302              		.loc 1 205 0
  303              		.cfi_startproc
@@ -524,189 +524,245 @@ ARM GAS  /tmp/cc1Ha7wN.s 			page 1
  311 0002 00AF     		add	r7, sp, #0
  312              	.LCFI27:
  313              		.cfi_def_cfa_register 7
- 206:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN DMA1_Channel4_IRQn 0 */
+ 206:Src/stm32f1xx_it.c **** 	/* USER CODE BEGIN EXTI0_IRQn 0 */
  207:Src/stm32f1xx_it.c **** 
- 208:Src/stm32f1xx_it.c ****   /* USER CODE END DMA1_Channel4_IRQn 0 */
- 209:Src/stm32f1xx_it.c ****   HAL_DMA_IRQHandler(&hdma_usart1_tx);
+ 208:Src/stm32f1xx_it.c **** 	/* USER CODE END EXTI0_IRQn 0 */
+ 209:Src/stm32f1xx_it.c **** 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
  314              		.loc 1 209 0
- 315 0004 0148     		ldr	r0, .L17
- 316 0006 FFF7FEFF 		bl	HAL_DMA_IRQHandler
- 210:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN DMA1_Channel4_IRQn 1 */
- 211:Src/stm32f1xx_it.c **** 
- 212:Src/stm32f1xx_it.c ****   /* USER CODE END DMA1_Channel4_IRQn 1 */
+ 315 0004 0120     		movs	r0, #1
+ 316 0006 FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
+ 210:Src/stm32f1xx_it.c **** 	/* USER CODE BEGIN EXTI0_IRQn 1 */
+ 211:Src/stm32f1xx_it.c **** 	HAL_UART_Transmit_DMA(&huart1, SysTick->VAL, 1);
+ 317              		.loc 1 211 0
+ 318 000a 044B     		ldr	r3, .L17
+ 319 000c 9B68     		ldr	r3, [r3, #8]
+ 320 000e 0448     		ldr	r0, .L17+4
+ 321 0010 1946     		mov	r1, r3
+ARM GAS  /tmp/cc8LIzEN.s 			page 10
+
+
+ 322 0012 0122     		movs	r2, #1
+ 323 0014 FFF7FEFF 		bl	HAL_UART_Transmit_DMA
+ 212:Src/stm32f1xx_it.c **** 	/* USER CODE END EXTI0_IRQn 1 */
  213:Src/stm32f1xx_it.c **** }
- 317              		.loc 1 213 0
- 318 000a 80BD     		pop	{r7, pc}
- 319              	.L18:
-ARM GAS  /tmp/cc1Ha7wN.s 			page 10
-
-
- 320              		.align	2
- 321              	.L17:
- 322 000c 00000000 		.word	hdma_usart1_tx
- 323              		.cfi_endproc
- 324              	.LFE72:
- 326              		.section	.text.DMA1_Channel5_IRQHandler,"ax",%progbits
- 327              		.align	2
- 328              		.global	DMA1_Channel5_IRQHandler
- 329              		.thumb
- 330              		.thumb_func
- 332              	DMA1_Channel5_IRQHandler:
- 333              	.LFB73:
+ 324              		.loc 1 213 0
+ 325 0018 80BD     		pop	{r7, pc}
+ 326              	.L18:
+ 327 001a 00BF     		.align	2
+ 328              	.L17:
+ 329 001c 10E000E0 		.word	-536813552
+ 330 0020 00000000 		.word	huart1
+ 331              		.cfi_endproc
+ 332              	.LFE72:
+ 334              		.section	.text.DMA1_Channel4_IRQHandler,"ax",%progbits
+ 335              		.align	2
+ 336              		.global	DMA1_Channel4_IRQHandler
+ 337              		.thumb
+ 338              		.thumb_func
+ 340              	DMA1_Channel4_IRQHandler:
+ 341              	.LFB73:
  214:Src/stm32f1xx_it.c **** 
  215:Src/stm32f1xx_it.c **** /**
- 216:Src/stm32f1xx_it.c **** * @brief This function handles DMA1 channel5 global interrupt.
+ 216:Src/stm32f1xx_it.c **** * @brief This function handles DMA1 channel4 global interrupt.
  217:Src/stm32f1xx_it.c **** */
- 218:Src/stm32f1xx_it.c **** void DMA1_Channel5_IRQHandler(void)
+ 218:Src/stm32f1xx_it.c **** void DMA1_Channel4_IRQHandler(void)
  219:Src/stm32f1xx_it.c **** {
- 334              		.loc 1 219 0
- 335              		.cfi_startproc
- 336              		@ args = 0, pretend = 0, frame = 0
- 337              		@ frame_needed = 1, uses_anonymous_args = 0
- 338 0000 80B5     		push	{r7, lr}
- 339              	.LCFI28:
- 340              		.cfi_def_cfa_offset 8
- 341              		.cfi_offset 7, -8
- 342              		.cfi_offset 14, -4
- 343 0002 00AF     		add	r7, sp, #0
- 344              	.LCFI29:
- 345              		.cfi_def_cfa_register 7
- 220:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN DMA1_Channel5_IRQn 0 */
+ 342              		.loc 1 219 0
+ 343              		.cfi_startproc
+ 344              		@ args = 0, pretend = 0, frame = 0
+ 345              		@ frame_needed = 1, uses_anonymous_args = 0
+ 346 0000 80B5     		push	{r7, lr}
+ 347              	.LCFI28:
+ 348              		.cfi_def_cfa_offset 8
+ 349              		.cfi_offset 7, -8
+ 350              		.cfi_offset 14, -4
+ 351 0002 00AF     		add	r7, sp, #0
+ 352              	.LCFI29:
+ 353              		.cfi_def_cfa_register 7
+ 220:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN DMA1_Channel4_IRQn 0 */
  221:Src/stm32f1xx_it.c **** 
- 222:Src/stm32f1xx_it.c ****   /* USER CODE END DMA1_Channel5_IRQn 0 */
- 223:Src/stm32f1xx_it.c ****   HAL_DMA_IRQHandler(&hdma_usart1_rx);
- 346              		.loc 1 223 0
- 347 0004 0648     		ldr	r0, .L20
- 348 0006 FFF7FEFF 		bl	HAL_DMA_IRQHandler
- 224:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN DMA1_Channel5_IRQn 1 */
- 225:Src/stm32f1xx_it.c ****   //flag_Rx = 0;
- 226:Src/stm32f1xx_it.c ****   HAL_UART_Transmit_DMA(&huart1, &data, 1);
- 349              		.loc 1 226 0
- 350 000a 0648     		ldr	r0, .L20+4
- 351 000c 0649     		ldr	r1, .L20+8
- 352 000e 0122     		movs	r2, #1
- 353 0010 FFF7FEFF 		bl	HAL_UART_Transmit_DMA
- 227:Src/stm32f1xx_it.c ****   HAL_UART_Receive_DMA(&huart1, &data, 1);
- 354              		.loc 1 227 0
- 355 0014 0348     		ldr	r0, .L20+4
- 356 0016 0449     		ldr	r1, .L20+8
- 357 0018 0122     		movs	r2, #1
- 358 001a FFF7FEFF 		bl	HAL_UART_Receive_DMA
- 228:Src/stm32f1xx_it.c ****     /* USER CODE END DMA1_Channel5_IRQn 1 */
- 229:Src/stm32f1xx_it.c **** }
- 359              		.loc 1 229 0
- 360 001e 80BD     		pop	{r7, pc}
- 361              	.L21:
- 362              		.align	2
-ARM GAS  /tmp/cc1Ha7wN.s 			page 11
+ 222:Src/stm32f1xx_it.c ****   /* USER CODE END DMA1_Channel4_IRQn 0 */
+ 223:Src/stm32f1xx_it.c ****   HAL_DMA_IRQHandler(&hdma_usart1_tx);
+ 354              		.loc 1 223 0
+ 355 0004 0148     		ldr	r0, .L20
+ 356 0006 FFF7FEFF 		bl	HAL_DMA_IRQHandler
+ 224:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN DMA1_Channel4_IRQn 1 */
+ 225:Src/stm32f1xx_it.c **** 
+ 226:Src/stm32f1xx_it.c ****   /* USER CODE END DMA1_Channel4_IRQn 1 */
+ 227:Src/stm32f1xx_it.c **** }
+ 357              		.loc 1 227 0
+ 358 000a 80BD     		pop	{r7, pc}
+ 359              	.L21:
+ 360              		.align	2
+ 361              	.L20:
+ 362 000c 00000000 		.word	hdma_usart1_tx
+ 363              		.cfi_endproc
+ 364              	.LFE73:
+ARM GAS  /tmp/cc8LIzEN.s 			page 11
 
 
- 363              	.L20:
- 364 0020 00000000 		.word	hdma_usart1_rx
- 365 0024 00000000 		.word	huart1
- 366 0028 00000000 		.word	data
- 367              		.cfi_endproc
- 368              	.LFE73:
- 370              		.section	.text.USART1_IRQHandler,"ax",%progbits
- 371              		.align	2
- 372              		.global	USART1_IRQHandler
- 373              		.thumb
- 374              		.thumb_func
- 376              	USART1_IRQHandler:
- 377              	.LFB74:
- 230:Src/stm32f1xx_it.c **** 
- 231:Src/stm32f1xx_it.c **** /**
- 232:Src/stm32f1xx_it.c **** * @brief This function handles USART1 global interrupt.
- 233:Src/stm32f1xx_it.c **** */
- 234:Src/stm32f1xx_it.c **** void USART1_IRQHandler(void)
- 235:Src/stm32f1xx_it.c **** {
- 378              		.loc 1 235 0
- 379              		.cfi_startproc
- 380              		@ args = 0, pretend = 0, frame = 0
- 381              		@ frame_needed = 1, uses_anonymous_args = 0
- 382 0000 80B5     		push	{r7, lr}
- 383              	.LCFI30:
- 384              		.cfi_def_cfa_offset 8
- 385              		.cfi_offset 7, -8
- 386              		.cfi_offset 14, -4
- 387 0002 00AF     		add	r7, sp, #0
- 388              	.LCFI31:
- 389              		.cfi_def_cfa_register 7
- 236:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN USART1_IRQn 0 */
- 237:Src/stm32f1xx_it.c **** 
- 238:Src/stm32f1xx_it.c ****   /* USER CODE END USART1_IRQn 0 */
- 239:Src/stm32f1xx_it.c ****   HAL_UART_IRQHandler(&huart1);
- 390              		.loc 1 239 0
- 391 0004 0148     		ldr	r0, .L23
- 392 0006 FFF7FEFF 		bl	HAL_UART_IRQHandler
- 240:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN USART1_IRQn 1 */
- 241:Src/stm32f1xx_it.c **** 
- 242:Src/stm32f1xx_it.c ****   /* USER CODE END USART1_IRQn 1 */
+ 366              		.section	.text.DMA1_Channel5_IRQHandler,"ax",%progbits
+ 367              		.align	2
+ 368              		.global	DMA1_Channel5_IRQHandler
+ 369              		.thumb
+ 370              		.thumb_func
+ 372              	DMA1_Channel5_IRQHandler:
+ 373              	.LFB74:
+ 228:Src/stm32f1xx_it.c **** 
+ 229:Src/stm32f1xx_it.c **** /**
+ 230:Src/stm32f1xx_it.c **** * @brief This function handles DMA1 channel5 global interrupt.
+ 231:Src/stm32f1xx_it.c **** */
+ 232:Src/stm32f1xx_it.c **** void DMA1_Channel5_IRQHandler(void)
+ 233:Src/stm32f1xx_it.c **** {
+ 374              		.loc 1 233 0
+ 375              		.cfi_startproc
+ 376              		@ args = 0, pretend = 0, frame = 0
+ 377              		@ frame_needed = 1, uses_anonymous_args = 0
+ 378 0000 80B5     		push	{r7, lr}
+ 379              	.LCFI30:
+ 380              		.cfi_def_cfa_offset 8
+ 381              		.cfi_offset 7, -8
+ 382              		.cfi_offset 14, -4
+ 383 0002 00AF     		add	r7, sp, #0
+ 384              	.LCFI31:
+ 385              		.cfi_def_cfa_register 7
+ 234:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN DMA1_Channel5_IRQn 0 */
+ 235:Src/stm32f1xx_it.c **** 
+ 236:Src/stm32f1xx_it.c ****   /* USER CODE END DMA1_Channel5_IRQn 0 */
+ 237:Src/stm32f1xx_it.c ****   HAL_DMA_IRQHandler(&hdma_usart1_rx);
+ 386              		.loc 1 237 0
+ 387 0004 0648     		ldr	r0, .L23
+ 388 0006 FFF7FEFF 		bl	HAL_DMA_IRQHandler
+ 238:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN DMA1_Channel5_IRQn 1 */
+ 239:Src/stm32f1xx_it.c ****   //flag_Rx = 0;
+ 240:Src/stm32f1xx_it.c ****   HAL_UART_Transmit_DMA(&huart1, &data, 1);
+ 389              		.loc 1 240 0
+ 390 000a 0648     		ldr	r0, .L23+4
+ 391 000c 0649     		ldr	r1, .L23+8
+ 392 000e 0122     		movs	r2, #1
+ 393 0010 FFF7FEFF 		bl	HAL_UART_Transmit_DMA
+ 241:Src/stm32f1xx_it.c ****   HAL_UART_Receive_DMA(&huart1, &data, 1);
+ 394              		.loc 1 241 0
+ 395 0014 0348     		ldr	r0, .L23+4
+ 396 0016 0449     		ldr	r1, .L23+8
+ 397 0018 0122     		movs	r2, #1
+ 398 001a FFF7FEFF 		bl	HAL_UART_Receive_DMA
+ 242:Src/stm32f1xx_it.c ****     /* USER CODE END DMA1_Channel5_IRQn 1 */
  243:Src/stm32f1xx_it.c **** }
- 393              		.loc 1 243 0
- 394 000a 80BD     		pop	{r7, pc}
- 395              	.L24:
- 396              		.align	2
- 397              	.L23:
- 398 000c 00000000 		.word	huart1
- 399              		.cfi_endproc
- 400              	.LFE74:
- 402              		.text
- 403              	.Letext0:
- 404              		.file 2 "/usr/include/newlib/machine/_default_types.h"
- 405              		.file 3 "/usr/include/newlib/sys/_stdint.h"
- 406              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 407              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
- 408              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
-ARM GAS  /tmp/cc1Ha7wN.s 			page 12
+ 399              		.loc 1 243 0
+ 400 001e 80BD     		pop	{r7, pc}
+ 401              	.L24:
+ 402              		.align	2
+ 403              	.L23:
+ 404 0020 00000000 		.word	hdma_usart1_rx
+ 405 0024 00000000 		.word	huart1
+ 406 0028 00000000 		.word	data
+ 407              		.cfi_endproc
+ARM GAS  /tmp/cc8LIzEN.s 			page 12
 
 
- 409              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
- 410              		.file 8 "Drivers/CMSIS/Include/core_cm3.h"
-ARM GAS  /tmp/cc1Ha7wN.s 			page 13
+ 408              	.LFE74:
+ 410              		.section	.text.USART1_IRQHandler,"ax",%progbits
+ 411              		.align	2
+ 412              		.global	USART1_IRQHandler
+ 413              		.thumb
+ 414              		.thumb_func
+ 416              	USART1_IRQHandler:
+ 417              	.LFB75:
+ 244:Src/stm32f1xx_it.c **** 
+ 245:Src/stm32f1xx_it.c **** /**
+ 246:Src/stm32f1xx_it.c **** * @brief This function handles USART1 global interrupt.
+ 247:Src/stm32f1xx_it.c **** */
+ 248:Src/stm32f1xx_it.c **** void USART1_IRQHandler(void)
+ 249:Src/stm32f1xx_it.c **** {
+ 418              		.loc 1 249 0
+ 419              		.cfi_startproc
+ 420              		@ args = 0, pretend = 0, frame = 0
+ 421              		@ frame_needed = 1, uses_anonymous_args = 0
+ 422 0000 80B5     		push	{r7, lr}
+ 423              	.LCFI32:
+ 424              		.cfi_def_cfa_offset 8
+ 425              		.cfi_offset 7, -8
+ 426              		.cfi_offset 14, -4
+ 427 0002 00AF     		add	r7, sp, #0
+ 428              	.LCFI33:
+ 429              		.cfi_def_cfa_register 7
+ 250:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN USART1_IRQn 0 */
+ 251:Src/stm32f1xx_it.c **** 
+ 252:Src/stm32f1xx_it.c ****   /* USER CODE END USART1_IRQn 0 */
+ 253:Src/stm32f1xx_it.c ****   HAL_UART_IRQHandler(&huart1);
+ 430              		.loc 1 253 0
+ 431 0004 0148     		ldr	r0, .L26
+ 432 0006 FFF7FEFF 		bl	HAL_UART_IRQHandler
+ 254:Src/stm32f1xx_it.c ****   /* USER CODE BEGIN USART1_IRQn 1 */
+ 255:Src/stm32f1xx_it.c **** 
+ 256:Src/stm32f1xx_it.c ****   /* USER CODE END USART1_IRQn 1 */
+ 257:Src/stm32f1xx_it.c **** }
+ 433              		.loc 1 257 0
+ 434 000a 80BD     		pop	{r7, pc}
+ 435              	.L27:
+ 436              		.align	2
+ 437              	.L26:
+ 438 000c 00000000 		.word	huart1
+ 439              		.cfi_endproc
+ 440              	.LFE75:
+ 442              		.text
+ 443              	.Letext0:
+ 444              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 445              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 446              		.file 4 "Drivers/CMSIS/Include/core_cm3.h"
+ 447              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 448              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 449              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 450              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
+ARM GAS  /tmp/cc8LIzEN.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f1xx_it.c
-     /tmp/cc1Ha7wN.s:19     .text.NMI_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:24     .text.NMI_Handler:0000000000000000 NMI_Handler
-     /tmp/cc1Ha7wN.s:53     .text.HardFault_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:58     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-     /tmp/cc1Ha7wN.s:79     .text.MemManage_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:84     .text.MemManage_Handler:0000000000000000 MemManage_Handler
-     /tmp/cc1Ha7wN.s:105    .text.BusFault_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:110    .text.BusFault_Handler:0000000000000000 BusFault_Handler
-     /tmp/cc1Ha7wN.s:131    .text.UsageFault_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:136    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
-     /tmp/cc1Ha7wN.s:157    .text.SVC_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:162    .text.SVC_Handler:0000000000000000 SVC_Handler
-     /tmp/cc1Ha7wN.s:190    .text.DebugMon_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:195    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
-     /tmp/cc1Ha7wN.s:223    .text.PendSV_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:228    .text.PendSV_Handler:0000000000000000 PendSV_Handler
-     /tmp/cc1Ha7wN.s:256    .text.SysTick_Handler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:261    .text.SysTick_Handler:0000000000000000 SysTick_Handler
-     /tmp/cc1Ha7wN.s:290    .text.SysTick_Handler:0000000000000018 $d
-     /tmp/cc1Ha7wN.s:295    .text.DMA1_Channel4_IRQHandler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:300    .text.DMA1_Channel4_IRQHandler:0000000000000000 DMA1_Channel4_IRQHandler
-     /tmp/cc1Ha7wN.s:322    .text.DMA1_Channel4_IRQHandler:000000000000000c $d
-     /tmp/cc1Ha7wN.s:327    .text.DMA1_Channel5_IRQHandler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:332    .text.DMA1_Channel5_IRQHandler:0000000000000000 DMA1_Channel5_IRQHandler
-     /tmp/cc1Ha7wN.s:364    .text.DMA1_Channel5_IRQHandler:0000000000000020 $d
-     /tmp/cc1Ha7wN.s:371    .text.USART1_IRQHandler:0000000000000000 $t
-     /tmp/cc1Ha7wN.s:376    .text.USART1_IRQHandler:0000000000000000 USART1_IRQHandler
-     /tmp/cc1Ha7wN.s:398    .text.USART1_IRQHandler:000000000000000c $d
+     /tmp/cc8LIzEN.s:19     .text.NMI_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:24     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/cc8LIzEN.s:53     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:58     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/cc8LIzEN.s:79     .text.MemManage_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:84     .text.MemManage_Handler:0000000000000000 MemManage_Handler
+     /tmp/cc8LIzEN.s:105    .text.BusFault_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:110    .text.BusFault_Handler:0000000000000000 BusFault_Handler
+     /tmp/cc8LIzEN.s:131    .text.UsageFault_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:136    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+     /tmp/cc8LIzEN.s:157    .text.SVC_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:162    .text.SVC_Handler:0000000000000000 SVC_Handler
+     /tmp/cc8LIzEN.s:190    .text.DebugMon_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:195    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+     /tmp/cc8LIzEN.s:223    .text.PendSV_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:228    .text.PendSV_Handler:0000000000000000 PendSV_Handler
+     /tmp/cc8LIzEN.s:256    .text.SysTick_Handler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:261    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/cc8LIzEN.s:290    .text.SysTick_Handler:0000000000000018 $d
+     /tmp/cc8LIzEN.s:295    .text.EXTI0_IRQHandler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:300    .text.EXTI0_IRQHandler:0000000000000000 EXTI0_IRQHandler
+     /tmp/cc8LIzEN.s:329    .text.EXTI0_IRQHandler:000000000000001c $d
+     /tmp/cc8LIzEN.s:335    .text.DMA1_Channel4_IRQHandler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:340    .text.DMA1_Channel4_IRQHandler:0000000000000000 DMA1_Channel4_IRQHandler
+     /tmp/cc8LIzEN.s:362    .text.DMA1_Channel4_IRQHandler:000000000000000c $d
+     /tmp/cc8LIzEN.s:367    .text.DMA1_Channel5_IRQHandler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:372    .text.DMA1_Channel5_IRQHandler:0000000000000000 DMA1_Channel5_IRQHandler
+     /tmp/cc8LIzEN.s:404    .text.DMA1_Channel5_IRQHandler:0000000000000020 $d
+     /tmp/cc8LIzEN.s:411    .text.USART1_IRQHandler:0000000000000000 $t
+     /tmp/cc8LIzEN.s:416    .text.USART1_IRQHandler:0000000000000000 USART1_IRQHandler
+     /tmp/cc8LIzEN.s:438    .text.USART1_IRQHandler:000000000000000c $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 HAL_IncTick
 HAL_SYSTICK_IRQHandler
 ticks_delay
+HAL_GPIO_EXTI_IRQHandler
+HAL_UART_Transmit_DMA
+huart1
 HAL_DMA_IRQHandler
 hdma_usart1_tx
-HAL_UART_Transmit_DMA
 HAL_UART_Receive_DMA
 hdma_usart1_rx
-huart1
 data
 HAL_UART_IRQHandler
