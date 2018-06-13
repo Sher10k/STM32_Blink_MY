@@ -10,26 +10,34 @@
 /* Private variables ---------------------------------------------------------*/
 char click0=1, k=1;
 volatile uint32_t ticks_delay = 0;
+volatile uint8_t flag_Rx = 1, flag_Tx = 1;
+volatile uint8_t data = 1;
 UART_HandleTypeDef huart1;
+DMA_HandleTypeDef hdma_usart1_tx;
+DMA_HandleTypeDef hdma_usart1_rx;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_USART1_UART_Init(void);
 void Delay2(uint32_t t);
 void delay_ms(uint32_t milliseconds);
 
 int main(void)
 {
-	uint8_t data = 1;
+
 	uint8_t str[] = "Hello";
 
 	// Initialization
 	HAL_Init();
 	SystemClock_Config();
 	MX_GPIO_Init();
+	MX_DMA_Init();
 	MX_USART1_UART_Init();
 
+	HAL_UART_Transmit_DMA(&huart1, &data, 1);
+	HAL_UART_Receive_DMA(&huart1, &data, 1);
 	// For SysTick
 	// SysTick
 	/*SysTick->LOAD = SystemCoreClock/1000-1;		// Загрузка значения. Нам нужен килогерц
@@ -40,6 +48,11 @@ int main(void)
 	//HAL_UART_Receive_IT(&huart1, &data, 1);
 	while (1)
 	{
+		//HAL_UART_Transmit_DMA(&huart1, &data, 1);
+		/*if (flag_Rx == 0) HAL_UART_Receive_DMA(&huart1, &data, 1);
+		flag_Rx = 1;*/
+		if (data == 1) GPIOC->ODR ^= GPIO_ODR_ODR13;
+
 		//HAL_UART_Transmit(&huart1, str, 5, 1000);
 
 		/*if (((GPIOA->IDR & (GPIO_IDR_IDR0)) == 0) && (click0 != 0))
@@ -51,9 +64,9 @@ int main(void)
 
 		//GPIOC->ODR ^= GPIO_ODR_ODR13;
 		//delay_ms(1000);
-		//HAL_Delay(1000);
+		HAL_Delay(1000);
 
-		if (huart1.RxXferCount == 0)
+		/*if (huart1.RxXferCount == 0)
 		{
 			//HAL_UART_Transmit(&huart1, str, 5, 1000);
 			HAL_UART_Transmit(&huart1, &data, 1, 1000);
@@ -68,7 +81,8 @@ int main(void)
 			}
 			if (k == 1) GPIOC->ODR ^= GPIO_ODR_ODR13;
 			HAL_UART_Receive_IT(&huart1, &data, 1);
-		}
+		}*/
+
 		/*if (k == 0)
 		{
 			GPIOC->BSRR |= GPIO_BSRR_BS13;
@@ -169,6 +183,24 @@ static void MX_USART1_UART_Init(void)
 	{
 	_Error_Handler(__FILE__, __LINE__);
 	}
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+	/* DMA controller clock enable */
+	__HAL_RCC_DMA1_CLK_ENABLE();
+
+	/* DMA interrupt init */
+	/* DMA1_Channel4_IRQn interrupt configuration */
+	HAL_NVIC_SetPriority(DMA1_Channel4_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(DMA1_Channel4_IRQn);
+	/* DMA1_Channel5_IRQn interrupt configuration */
+	HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
+
 }
 
 /* функция задержки */
